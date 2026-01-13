@@ -85,6 +85,10 @@ If you want **fewer false alarms**, increase confidence:
 yolo task=detect mode=predict model=runs/detect/train/weights/best.pt source=test_images/ conf=0.5 iou=0.6
 ```
 
+Recommended “high precision / fewer false alarms” thresholds (picked by sweeping on the val set):
+- **balanced**: `conf=0.7`, `iou=0.6`
+- **very strict (minimum false alarms)**: `conf=0.8`, `iou=0.6` (will miss more true objects)
+
 ### Video (optional)
 
 ```bash
