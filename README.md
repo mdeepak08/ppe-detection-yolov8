@@ -95,10 +95,25 @@ Predictions are saved under `runs/detect/predict*/`.
 
 ## Metrics achieved (fill after training)
 
-- **mAP@0.5**: 0.828
-- **mAP@0.5:0.95**: 0.533
-- **Precision**: 0.827
-- **Recall**: 0.771
+- **mAP@0.5**: 0.876
+- **mAP@0.5:0.95**: 0.591
+- **Precision**: 0.954
+- **Recall**: 0.760
+
+## YOLOv8n vs YOLOv8s (why metrics changed)
+
+We trained two pretrained YOLOv8 models on the same dataset and compared validation metrics:
+
+| Model | Precision | Recall | mAP@0.5 | mAP@0.5:0.95 |
+|------|-----------:|-------:|--------:|-------------:|
+| **YOLOv8n** (nano) | 0.827 | 0.771 | 0.828 | 0.533 |
+| **YOLOv8s** (small) | 0.954 | 0.760 | 0.876 | 0.591 |
+
+What this means:
+- **Precision jumped (0.827 → 0.954)**: YOLOv8s produced **fewer false positives** (fewer false alarms), which was our priority.
+- **Recall slightly dropped (0.771 → 0.760)**: This is a common trade-off—being more conservative (higher precision) can miss a few more true objects.
+- **mAP improved (0.828 → 0.876)**: YOLOv8s has higher capacity than YOLOv8n, so it learns stronger features and separates classes/background better.
+- **mAP@0.5:0.95 improved (0.533 → 0.591)**: The stricter metric improved, suggesting **better box quality/tighter localization** overall.
 
 ## Example detections (add your outputs here)
 
