@@ -15,6 +15,9 @@ archive/
 # Ultralytics outputs
 runs/
 
+# Model weight downloads (Ultralytics will auto-download these)
+*.pt
+
 # Optional local media
 *.mp4
 

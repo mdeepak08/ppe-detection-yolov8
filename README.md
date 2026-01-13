@@ -79,6 +79,12 @@ Put a few images into `test_images/` and run:
 yolo task=detect mode=predict model=runs/detect/train/weights/best.pt source=test_images/
 ```
 
+If you want **fewer false alarms**, increase confidence:
+
+```bash
+yolo task=detect mode=predict model=runs/detect/train/weights/best.pt source=test_images/ conf=0.5 iou=0.6
+```
+
 ### Video (optional)
 
 ```bash
@@ -89,9 +95,10 @@ Predictions are saved under `runs/detect/predict*/`.
 
 ## Metrics achieved (fill after training)
 
-- **mAP@0.5**: TBD
-- **Precision**: TBD
-- **Recall**: TBD
+- **mAP@0.5**: 0.828
+- **mAP@0.5:0.95**: 0.533
+- **Precision**: 0.827
+- **Recall**: 0.771
 
 ## Example detections (add your outputs here)
 
@@ -99,4 +106,23 @@ After running inference, copy a few annotated images from `runs/detect/predict*/
 
 ![Example 1](assets/examples/example1.jpg)
 ![Example 2](assets/examples/example2.jpg)
+![Example 3](assets/examples/example3.jpg)
+
+## Push to GitHub
+
+This repo is set up so you **do not** accidentally push large folders:
+- `dataset/images/` and `dataset/labels/` are ignored
+- `runs/` is ignored
+- `archive/` is ignored
+
+Suggested flow:
+
+```bash
+git init
+git add .
+git commit -m "PPE detection with YOLOv8"
+git branch -M main
+git remote add origin <YOUR_GITHUB_REPO_URL>
+git push -u origin main
+```
 
